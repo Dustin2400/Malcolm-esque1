@@ -1,0 +1,15 @@
+<main class="login">
+  <h3>Log In</h3>
+  <form #registerForm="ngForm" (ngSubmit)="login()">
+    <div><div *ngIf="failed" class="error">Invalid username or password</div></div>
+    <div>
+      <label for="username">Username</label>
+      <input name="username" type="text" [(ngModel)]="username"/>
+    </div>
+    <div>
+      <label for="password">Password</label>
+      <input name="password" type="password" [(ngModel)]="password"/>
+    </div>
+    <button type="submit">Log In</button>
+  </form>
+</main>

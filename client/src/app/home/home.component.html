@@ -1,0 +1,15 @@
+<div *ngIf="isMe">
+  <a routerLink="/addStory">Add Story</a>
+</div>
+<div class="storyList">
+  <div *ngFor="let story of stories" class="link">
+    <a routerLink="/story/{{story.name}}" class="storyLink">
+      <div class="background">
+        <h2 class="storyTitle">{{story.title}}</h2>
+        <h3 class="storySubtitle">{{story.subtitle}}</h3>
+      </div>
+      <div class="foreground"></div>
+      <img src="{{story.contents[0].url}}" class="storyListImage" />
+    </a>
+  </div>
+</div>

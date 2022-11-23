@@ -1,0 +1,28 @@
+<div *ngIf="isMe">
+  <form #editStoryForm = "ngForm" (ngSubmit)="editStory()" class="addStory">
+    
+      <label for="title">Title</label>
+      <input name="title" type="text" [(ngModel)]="story.title" req/>
+      <label for="subtitle">Subtitle</label>
+      <input type="subtitle" [(ngModel)]="story.subtitle" name="subtitle" req>
+      <label for="name">Name</label>
+      <input type="name" [(ngModel)]="story.name" name="name" req>
+      <button (click)="addContent()">Add Content</button>
+      <div *ngFor="let content of story.contents; index as i">
+        <label for="type">Type</label>
+          <select name="{{'type' + i}}" [(ngModel)]="content.type" value="{{content.type}}">
+            <option value=''>Pick one</option>
+            <option value='text' selected="selected">text</option>
+            <option value='image'>image</option>
+          </select>
+        <label for="text">Text</label>
+        <textarea name="{{ 'text-' + i }}" cols="50" rows="7" [(ngModel)]="content.text">{{content.text}}</textarea>
+        <label for="url">url</label>
+        <input name="{{'url-' + i }}" type="text" value="{{content.url}}" [(ngModel)]="content.url">
+      </div>
+      <button type="submit">Edit</button>
+  </form>
+</div>
+<div *ngIf="!isMe">
+  Psych!
+</div>

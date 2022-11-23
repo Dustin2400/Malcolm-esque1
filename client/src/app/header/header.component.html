@@ -1,0 +1,16 @@
+<header>
+  <section class="image"></section>
+  <nav>
+    <a routerLink='/'>Home</a>
+    <div *ngIf="!loggedIn">
+      <a routerLink="/login">Log in</a>
+      <a routerLink="/register">Sign up</a>
+    </div>
+    <div *ngIf="loggedIn">
+      <button (click)="logout()">Log out</button>
+      <a routerLink="/dashboard/{{userId}}">Dashboard</a>
+    </div>
+  </nav>
+  <h1>Malcolm-esque</h1>
+  <p class='subtitle'>The Blog</p>
+</header>

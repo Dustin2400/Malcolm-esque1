@@ -1,0 +1,31 @@
+<main class="login">
+  <h3>Sign Up</h3>
+  <form #registerForm = "ngForm" (ngSubmit)="register()">
+    <div>
+      <label for="username">Username</label>
+      <input name="username" type="text" [(ngModel)]="username" req/>
+      <div class="error" *ngIf="!originalUsername">This username is already taken. Please choose an origial username.</div>
+    </div>
+    <div>
+      <label for="email">Email</label>
+      <input type="text" [(ngModel)]="email" name="email" #emailNgModel="ngModel" appEmail req>
+      <div class="error" *ngIf="emailNgModel.errors?.['notEmail']">Enter a valid email.</div>
+    </div>
+    <div>
+      <label for="password">Password</label>
+        <input type="password" [(ngModel)]="password" name="password" #passwordNgModel="ngModel" appPassword req>
+        <div class="error" *ngIf="passwordNgModel.errors?.['badPassword']">
+            Password must contain:
+            <ul>
+              <li>at least 8 characters</li>
+              <li>one uppercase letter</li>
+              <li>one lowercase letter</li>
+              <li>one digit</li>
+              <li>one special character(●!#$%&()*+,-./:;=?@[\]^_`|~])</li>
+            </ul>
+        </div>
+    </div>
+    <div *ngIf="!passwordNgModel.errors?.['badPassword'] && !emailNgModel.errors?.['notFdmEmail']">
+      <button type="submit">Sign Up</button>
+    </div>
+  </form>
