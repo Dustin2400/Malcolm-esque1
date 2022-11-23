@@ -6,9 +6,5 @@
     "apollo-angular": "^3.0.1",
     "concurrently": "^7.6.0",
     "node": "^19.1.0"
-  },
-  "engines": {
-    "node": "10.15.1",
-    "npm": "6.4.1"
   }
 }
