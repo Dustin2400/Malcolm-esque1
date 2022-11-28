@@ -5,7 +5,7 @@ mongoose.connect(
   process.env.MONGODB_URI || URI,
   {
     useNewUrlParser: true,
-    useUnifiedTopology: true,
+    useUnifiedTopology: true
     // family: 4
   }
 );
