@@ -1,7 +1,6 @@
 {
   "scripts": {
-    "start": "concurrently \"node server/server.js\" \"cd client && npm start\" ",
-    "heroku-postbuild": "ng build"
+    "start": "concurrently \"node server/server.js\" \"cd client && npm start\" "
   },
   "dependencies": {
     "@angular/animations": "^14.0.0",
