@@ -2,30 +2,38 @@ const express = require('express');
 const { ApolloServer } = require('apollo-server-express');
 const { authMiddleware } = require('./utils/auth');
 const mongoose = require('mongoose');
+require('dotenv').config;
 
 const path = require('path');
 
-const db = require('./config/connection');
+// const db = require('./config/connection');
 const { typeDefs, resolvers } = require('./schemas');
 
 const app = express();
 const PORT = process.env.PORT || 3002;
 
-const startServer = async() => {
-  const server = new ApolloServer({
-    typeDefs,
-    resolvers,
-    context: authMiddleware 
-  });
+// const startServer = async() => {
+//   const server = new ApolloServer({
+//     typeDefs,
+//     resolvers,
+//     context: authMiddleware 
+//   });
 
-  await server.start();
+//   await server.start();
 
-  server.applyMiddleware({ app });
+//   server.applyMiddleware({ app });
 
-  console.log(`User GraphQL at http://localhost:${PORT}${server.graphqlPath}`);
-};
+//   console.log(`User GraphQL at http://localhost:${PORT}${server.graphqlPath}`);
+// };
 
-startServer();
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/malcolm-esque', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+});
+
+mongoose.set('debug', true);
+
+// startServer();
 
 app.use(express.urlencoded({ extended: true}));
 app.use(express.json());
@@ -41,8 +49,10 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, '../client/build')));
 }
 
-db.once('open', () => {
-  app.listen(PORT, () => {
-    console.log(`API server running on port ${PORT}!`);
-  });
-});
+app.listen(PORT, () => console.log(`🌍 Connected on localhost:${PORT}`));
+
+// db.once('open', () => {
+//   app.listen(PORT, () => {
+//     console.log(`API server running on port ${PORT}!`);
+//   });
+// });
